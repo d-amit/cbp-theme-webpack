@@ -21,6 +21,7 @@ let defaultConfig = {
     },
     devServer: {
         headers: { 'Access-Control-Allow-Origin': '*' },
+        contentBase : path.resolve('./app/kitchensink'),
         proxy: [{
             context: "/api",
             changeOrigin: true
@@ -56,7 +57,7 @@ let defaultConfig = {
             $: 'jquery',
             jQuery: 'jquery'
         }),
-        new ExtractTextPlugin('styles.css', {
+        new ExtractTextPlugin('cbp-theme.css', {
           publicPath: "./",
           allChunks : false
         })
@@ -82,4 +83,4 @@ let standardDistConfig = Object.assign({}, defaultConfig, {
     }
 });
 
-module.exports = [ kitchensinkConfig, standardDistConfig ];
+module.exports = [ standardDistConfig, kitchensinkConfig ];

@@ -66,7 +66,8 @@
     "style-loader": "^0.13.0",
     "url-loader": "0.5.7",
     "webfont-dl": "^0.1.2",
-    "webpack": "^1.12.3"
+    "webpack": "^1.12.3",
+    "webpack-dev-server": "1.16.1"
   },
   "dependencies": {
     "jquery": "2.2 - 3"
@@ -76,11 +77,11 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist && rm -rf ./app/kitchensink/dist",
-    "lint": "eslint --ignore-pattern src/**/app-*.js --ext .js js/**",
+    "lint": "eslint --ignore-pattern ./app/**/app-*.js --ext .js js/**",
     "dev:build": "webpack --bail",
-    "dev:serve": "webpack-dev-server --host=0.0.0.0 --watch --port=9000 --content-base=./app/kitchensink/index.html",
+    "dev:serve": "webpack-dev-server --host=0.0.0.0 --port=9000 --content-base",
     "dev": "npm run clean && npm run dev:build && npm run dev:serve",
-    "prod:build": "cross-env webpack --config webpack-production.config.js --bail",
+    "prod:build": "webpack --config webpack-production.config.js --bail",
     "test": "echo 'we need tests'",
     "a11y": "pa11y --standard Section508 --reporter html > a11y.html http://localhost:9000 || true",
     "fonts": "webfont-dl -d \"https://fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,500italic,700,700italic&subset=latin,greek,greek-ext,latin-ext,cyrillic-ext,cyrillic\" -o app/styles/vendor/roboto.css --font-out=app/fonts --css-rel=../../fonts --woff2=link --woff1=link --svg=link --ttf=link --eot=link",
