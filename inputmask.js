@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import 'jquery.inputmask';
 import 'inputmask';
 import 'inputmask.dependencyLib';

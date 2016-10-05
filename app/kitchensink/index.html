@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
+  
     <title>CBP Common Framework UI Theme</title>
+
     <meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
     <meta charset="UTF-8">
@@ -13,27 +15,7 @@
     <link media="screen" href="./dist/cbp-theme.css" rel="stylesheet" />
 
     <!-- CUSTOM CSS ONLY FOR THIS KITCHEN SINK -->
-    <style>
-      .bs-example {
-        z-index: 5 !important;
-        background-color: rgba(0, 0, 0, 0.045);
-        position: relative;
-      }
-      .bs-example-popover .popover {
-        position: relative;
-        display: block;
-        float: left;
-        width: 280px;
-        margin: 20px;
-        z-index: 5 !important;
-      }
-      .sandbox {
-        padding: 20px 0;
-      }
-      .cards-example {
-        padding:  0 20px;
-      }
-    </style>
+    <link media="screen" href="./kitchensink.css" rel="stylesheet" />
 
   </head>
   <body>
@@ -3810,129 +3792,14 @@
     <!-- application specific third party js files here -->
     <script src="./thirdparty/js/jquery-ui.min.js"></script>
     <script src="./thirdparty/js/alerts.js"></script>
-    <script src="./dist/vendor.js"></script> <!-- select2 and selectize -->
+    <script src="./thirdparty/js/select2.min.js"></script> 
+    <script src="./thirdparty/js/selectize.min.js"></script> 
 
     <!-- js for cbp-theme should be loaded after all thirdparty js files -->
     <script src="./dist/cbp-theme.js"></script>
 
-    <script type="text/javascript">
-    $(document).ready(function () {
+    <!-- and finally kitchen sink js that init all components when DOM ready! -->
+    <script src="./kitchensink.js"></script>
 
-      $('.dropdown-toggle').dropdown();
-
-      // enable tooltips
-      $('[data-toggle="tooltip"]').tooltip({
-        container: 'body',
-        delay: {show: 200, hide: 0}
-      });
-
-      // enable popover
-      $('[data-toggle="popover"]').popover();
-
-      // enable masks
-      $(':input').inputmask();
-
-      // TOC
-      $('.toc a').on('click', function() {
-      $('.toc a.active').removeClass('active');
-        $(this).addClass('active');
-      });
-
-      // progress bar
-      $('#exampleProgressBar').each(function() {
-      var barEl = $(this);
-      var valueEl = $('#exampleProgressBarValue');
-      var progress = parseInt(this.style.width, 10);
-        setInterval(function () {
-          barEl.css('width', ((progress += 19) % 100) + '%');
-          valueEl.text(progress % 100 + '%');
-        }, 1000);
-      });
-
-      // enable datepickers (NOTE the 'not' method to aviod double init of range examples!)
-      $('.datepicker').not("#startRange").not("#endRange").datepicker({
-        autoSize: true,
-        showButtonPanel: true,
-        numberOfMonths: 1,
-        showOtherMonths: true,
-        changeMonth: true,
-        changeYear: true,
-        onClose : function(dateStr, inst) {
-          // needed for mdl textfield floading labels!
-          if ($(this).parent().get(0).MaterialTextfield) {
-            $(this).parent().get(0).MaterialTextfield.checkDirty();
-          }
-        }
-      });
-      // specific to our date range example
-      $('#startRange.datepicker').datepicker({
-        autoSize: true,
-        showButtonPanel: true,
-        numberOfMonths: 1,
-        showOtherMonths: true,
-        changeMonth: true,
-        changeYear: true,
-        onSelect : function(dateStr) {
-          //console.info(arguments);
-          $("#endRange.datepicker").datepicker( "option", "minDate", dateStr);
-        },
-        onClose : function() {
-          // needed for mdl textfield floading labels!
-          if ($(this).parent().get(0).MaterialTextfield) {
-            $(this).parent().get(0).MaterialTextfield.checkDirty();
-          }
-        }
-      });
-      $('#endRange.datepicker').datepicker({
-        autoSize: true,
-        showButtonPanel: true,
-        numberOfMonths: 1,
-        showOtherMonths: true,
-        changeMonth: true,
-        changeYear: true,
-        onSelect : function(dateStr) {
-          //console.info(arguments);
-          $("#startRange.datepicker").datepicker( "option", "maxDate", dateStr);
-        },
-        onClose : function() {
-          // needed for mdl textfield floading labels!
-          if ($(this).parent().get(0).MaterialTextfield) {
-           $(this).parent().get(0).MaterialTextfield.checkDirty();
-          }
-        }
-      });
-
-      $(".modal-dialog").each(function() {
-        $(this).draggable({
-          handle: ".modal-header"
-        });
-      });
-
-      $('.select2').select2({ allowEmptyOption: true });
-      $('.select2-multiple').select2({ allowEmptyOption: true });
-      $('.selectize').selectize({ allowClear: true });
-      $('.selectize-multiple').selectize({ allowClear: true });
-
-      var hulkIt = function(className) {
-        $('footer.cbp-banner').removeClass().addClass('cbp-banner ' + className);
-      };
-      $('#unofficial').on('click', function() {
-        hulkIt('');
-      });
-      $('#confidential').on('click', function() {
-        hulkIt('confidential');
-      });
-      $('#lawSensitive').on('click', function() {
-        hulkIt('law-enforcement');
-      });
-      $('#secret').on('click', function() {
-        hulkIt('secret');
-      });
-      $('#topSecret').on('click', function() {
-        hulkIt('top-secret');
-      });
-
-    });
-  </script>
   </body>
 </html>

@@ -5,7 +5,7 @@ let webpack = require('webpack'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     postcssImport = require('postcss-import');
 
-let defaultConfig = {
+const defaultConfig = {
     cache: true,
     entry: {
         'cbp-theme': './index.js',
@@ -20,12 +20,7 @@ let defaultConfig = {
         reasons: true
     },
     devServer: {
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        contentBase : path.resolve('./app/kitchensink'),
-        proxy: [{
-            context: "/api",
-            changeOrigin: true
-        }]
+        contentBase : path.resolve('./app/kitchensink')
     },
     module: {
         loaders: require('./webpack.loaders')
@@ -64,21 +59,21 @@ let defaultConfig = {
     ]
 };
 
-let kitchensinkConfig = Object.assign({}, defaultConfig, {
-    entry: Object.assign({}, defaultConfig.entry, { 'vendor': [ 'select2', 'selectize' ] }),
+
+const kitchensinkConfig = Object.assign({}, defaultConfig, {
+    devtool: "#eval",
+    debug: true,
     output: {
         path: path.resolve('./app/kitchensink/dist'),
         filename: '[name].js',
-        publicPath: './',
         chunkFilename: "[hash]/js/[id].js"
     }
 });
 
-let standardDistConfig = Object.assign({}, defaultConfig, {
+const standardDistConfig = Object.assign({}, defaultConfig, {
     output: {
         path: path.resolve('./dist'),
         filename: '[name].js',
-        publicPath: './',
         chunkFilename: "[hash]/js/[id].js"
     }
 });

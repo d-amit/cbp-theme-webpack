@@ -50,7 +50,7 @@
     "file-loader": "0.8.5",
     "font-awesome": "^4.6.3",
     "html-loader": "^0.4.3",
-    "html-webpack-plugin": "^2.19.0",
+    "html-webpack-plugin": "2.22.0",
     "immutable": "^3.8.1",
     "json-loader": "^0.5.4",
     "material-design-lite": "^1.1.1",
