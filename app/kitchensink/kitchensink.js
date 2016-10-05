@@ -31,6 +31,10 @@ $(document).ready(function () {
         }, 1000);
       });
 
+      //
+      // Init datepicker
+      //
+        
       // enable datepickers (NOTE the 'not' method to aviod double init of range examples!)
       $('.datepicker').not("#startRange").not("#endRange").datepicker({
         autoSize: true,
@@ -46,6 +50,7 @@ $(document).ready(function () {
           }
         }
       });
+
       // specific to our date range example
       $('#startRange.datepicker').datepicker({
         autoSize: true,
@@ -65,6 +70,7 @@ $(document).ready(function () {
           }
         }
       });
+
       $('#endRange.datepicker').datepicker({
         autoSize: true,
         showButtonPanel: true,
@@ -84,20 +90,26 @@ $(document).ready(function () {
         }
       });
 
+      // make modal draggable!
       $(".modal-dialog").each(function() {
         $(this).draggable({
           handle: ".modal-header"
         });
       });
 
+
+      // init select components
       $('.select2').select2({ allowEmptyOption: true });
       $('.select2-multiple').select2({ allowEmptyOption: true });
       $('.selectize').selectize({ allowClear: true });
       $('.selectize-multiple').selectize({ allowClear: true });
 
+
+      // Security Footers
       var hulkIt = function(className) {
         $('footer.cbp-banner').removeClass().addClass('cbp-banner ' + className);
       };
+
       $('#unofficial').on('click', function() {
         hulkIt('');
       });

@@ -12,7 +12,8 @@ module.exports = [{
 }, {
     test: /\.(js)$/,
     loader: 'babel',
-    query: { compact: true } 
+    exclude: [/node_modules/],
+    query: { compact: false } 
 }, {
     test: /\.html$/,
     exclude: [/node_modules/, /index\.html/ ],

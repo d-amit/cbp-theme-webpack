@@ -1,13 +1,19 @@
+import $ from 'jquery';
+import InputMask from 'inputmask';
+import 'jquery.inputmask';
+import 'inputmask.dependencyLib';
+import 'inputmaskDir/inputmask.extensions';
+import 'inputmaskDir/inputmask.regex.extensions';
+import 'inputmaskDir/inputmask.phone.extensions';
+import 'inputmaskDir/inputmask.date.extensions';
+import 'inputmaskDir/inputmask.numeric.extensions';
 
-(function() {
 
-  'use strict';
+(function($, InputMask) {
 
-  !function(factory) {
-      "function" == typeof define && define.amd ? define([ "jquery", "inputmask" ], factory) : "object" == typeof exports ? module.exports = factory(require("jquery"), require("./jquery.inputmask")) : factory(jQuery);
-  }(function($) {
+      'use strict';
 
-      if (!$.inputmask || !$.inputmask.defaults) {
+      if (!$ || !InputMask) {
         return false; // fail gracefully
       }
 
@@ -32,9 +38,8 @@
         });
       };
 
-      return $.extend($.inputmask.defaults.aliases,
-        {
-          'mdl-textfield-default': {
+      Inputmask.extendAliases({
+        'mdl-textfield-default': {
             showMaskOnHover: false,
             onKeyDown: checkDirty
           },
@@ -58,9 +63,7 @@
             onKeyDown: placeholderCheckDirty,
             onBeforeMask: placeholderCheckDirty
           }
-        }
-      ), $.fn.inputmask;
+      });
 
-  });
+})($, InputMask);
 
-}());

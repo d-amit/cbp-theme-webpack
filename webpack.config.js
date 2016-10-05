@@ -40,14 +40,15 @@ const defaultConfig = {
         alias : {
             "inputmask.dependencyLib": path.resolve('./node_modules/jquery.inputmask/dist/inputmask/inputmask.dependencyLib.jquery.js'),
             "inputmask": path.resolve('./node_modules/jquery.inputmask/dist/inputmask/inputmask.js'),
-            "jquery.inputmask": path.resolve('./node_modules/jquery.inputmask/dist/inputmask/jquery.inputmask.js')
+            "jquery.inputmask": path.resolve('./node_modules/jquery.inputmask/dist/inputmask/jquery.inputmask.js'),
+            "inputmaskDir": path.resolve('./node_modules/jquery.inputmask/dist/inputmask')
         },
         extensions: [ '', '.json', '.js', '.min.js', '.bundle.js', '.css', '.min.css', '.scss', '.html' ]
     },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', Infinity), // name, chucks/filename, minchunk
+        new webpack.optimize.CommonsChunkPlugin('jquery', 'jquery.js', Infinity), // name, chucks/filename, minchunk
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'
