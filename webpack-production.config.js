@@ -12,7 +12,7 @@ dev_config.module.loaders.push({
 
 dev_config.plugins.push(
 	new webpack.NoErrorsPlugin(),
-    new webpack.optimize.DedupePlugin()
+  new webpack.optimize.DedupePlugin()
 );
 
 module.exports = dev_config;
