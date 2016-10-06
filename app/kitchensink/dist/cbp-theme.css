@@ -9969,6 +9969,8 @@ label.mdl-textfield__label {
 label.mdl-textfield__label.static-label {
   font-size: 12px;
   top: 4px; }
+.mdl-textfield.is-focused label.mdl-textfield__label:after {
+  visibility: hidden; }
 .loading {
   text-align: center;
   width: 32px;
